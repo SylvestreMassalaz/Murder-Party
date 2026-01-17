@@ -1,6 +1,10 @@
 # murder_party
 
-A new Flutter project.
+A flutter application made to help people host murder parties and deal with player inventory and action points when present.
+
+## Technical thingies
+
+The idea is to be able to host a small rest api exposed in the local network. Other players can connect to the host and synchronise their state with the server. This apps use flutter to be able to provide something quickly that could both be used from a mobile phone / tablet and a computer.
 
 ## Getting Started
 
