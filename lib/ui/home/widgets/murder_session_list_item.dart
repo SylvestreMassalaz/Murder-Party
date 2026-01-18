@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:murder_party/domain/model/murder_party_session.dart';
+import 'package:murder_party/l10n/app_localizations.dart';
 
 class MurderSessionListItem extends StatelessWidget {
   const MurderSessionListItem({super.key, required this.murderPartySession});
@@ -16,7 +17,9 @@ class MurderSessionListItem extends StatelessWidget {
           ListTile(
             title: Text(murderPartySession.name),
             trailing: Chip(
-              label: Text(_computeTypeLabel(murderPartySession.sessionType)),
+              label: Text(
+                _computeTypeLabel(murderPartySession.sessionType, context),
+              ),
             ),
           ),
         ],
@@ -24,12 +27,13 @@ class MurderSessionListItem extends StatelessWidget {
     );
   }
 
-  String _computeTypeLabel(SessionType type) {
+  String _computeTypeLabel(SessionType type, BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     switch (type) {
       case .coordinator:
-        return "Coordinator";
+        return localizations.coordinator;
       case .player:
-        return "Player";
+        return localizations.player;
     }
   }
 }

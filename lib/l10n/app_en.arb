@@ -1,0 +1,34 @@
+{
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "appName": "Murder Party Companion",
+  "@appName": {
+    "description": "Name of the app"
+  },
+  "recentSessions": "Recent sessions",
+  "@recentSessions": {
+    "description": "Precedes the list of the recent sessions managed of player by the owner of the app"
+  },
+  "createNewMurderParty": "Create new murder party",
+  "@createNewMurderParty": {
+    "description": "used to indicate buttons / fab the user can use to create a new Murder party as the manager"
+  },
+  "joinMurder": "Join existing murder",
+  "@joinMurder": {
+    "description": "Used to indicate buttons / fab the user can use to join an existing murder"
+  },
+  "player": "Player",
+  "@player": {
+    "description": "Used to indicate that the current murder is joined as a player without administration rights"
+  },
+  "coordinator": "Coordinator",
+  "@coordinator": {
+    "description": "Used to indicate that the current murder is joined as a coordinator with administrations rights"
+  },
+  "noMurderText": "No murder session could be found. You can either join an existing session or create your own",
+  "@noMurderText": {
+    "description": "Text to explain to the user that there is no murder party session stored, nether as an user nor a coordinator"
+  }
+}

@@ -1,0 +1,10 @@
+{
+    "helloWorld": "Bonjour, Monde!",
+    "appName": "Murder party companion",
+    "recentSessions": "Sessions récentes",
+    "createNewMurderParty": "Créer une murder",
+    "joinMurder": "Rejoindre une Murder existante",
+    "player": "Joueur",
+    "coordinator": "Organisateur",
+    "noMurderText": "Aucune session enregistrée n'a pu être trouvée. Vous pouvez soit rejoindre une session existante, soit créer la votre."
+}

@@ -6,6 +6,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:murder_party/domain/model/murder_party_session.dart';
 import 'package:murder_party/domain/model/result.dart';
+import 'package:murder_party/l10n/app_localizations.dart';
 import 'package:murder_party/ui/home/view_models/home_view_model.dart';
 import 'package:murder_party/ui/home/widgets/home_screen.dart';
 import 'package:murder_party/ui/home/widgets/murder_session_list_item.dart';
@@ -30,6 +31,9 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
+          locale: Locale('en'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Directionality(textDirection: .ltr, child: homeScreen),
         ),
       );
@@ -55,6 +59,9 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
+          locale: Locale('en'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Directionality(textDirection: .ltr, child: homeScreen),
         ),
       );
