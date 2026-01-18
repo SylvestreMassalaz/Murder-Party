@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:murder_party/data/repositories/murder_repository.dart';
 import 'package:murder_party/data/services/murder_rest_api.dart';
+import 'package:murder_party/l10n/app_localizations.dart';
 import 'package:murder_party/ui/home/view_models/home_view_model.dart';
 import 'package:murder_party/ui/home/widgets/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -72,6 +74,8 @@ class MyApp extends StatelessWidget {
       theme: theme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: context.read<HomeScreen>(),
     );
   }

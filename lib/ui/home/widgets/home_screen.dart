@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
+import 'package:murder_party/l10n/app_localizations.dart';
 import 'package:murder_party/ui/home/view_models/home_view_model.dart';
 import 'package:murder_party/ui/home/widgets/murder_session_list_item.dart';
 import 'package:murder_party/ui/home/widgets/no_murder_sessions.dart';
@@ -13,6 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       body: SafeArea(
         child: ListenableBuilder(
@@ -21,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             return CustomScrollView(
               slivers: [
                 SliverAppBar(
-                  title: const Text("Murder Party"),
+                  title: Text(appLocalizations.appName),
                   backgroundColor: Theme.of(
                     context,
                   ).colorScheme.primaryContainer,
@@ -50,13 +52,13 @@ class HomeScreen extends StatelessWidget {
         children: [
           FloatingActionButton.small(
             onPressed: () => print("Used fad for create"),
-            tooltip: "Create new murder",
+            tooltip: appLocalizations.createNewMurderParty,
 
             child: Icon(Icons.add),
           ),
           FloatingActionButton.small(
             onPressed: () => print("Used fad for join"),
-            tooltip: "Join existing murder",
+            tooltip: appLocalizations.joinMurder,
             child: Icon(Icons.qr_code),
           ),
         ],
@@ -79,7 +81,10 @@ class HomeScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text("Recent sessions", textScaler: TextScaler.linear(1.5)),
+                Text(
+                  AppLocalizations.of(context)!.recentSessions,
+                  textScaler: TextScaler.linear(1.5),
+                ),
               ],
             ),
           ),
