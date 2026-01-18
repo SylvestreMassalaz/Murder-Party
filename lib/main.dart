@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:murder_party/data/repositories/murder_repository.dart';
 import 'package:murder_party/data/services/murder_rest_api.dart';

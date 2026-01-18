@@ -1,13 +1,16 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:murder_party/l10n/app_localizations.dart';
 
 class NoMurderSessions extends StatelessWidget {
   const NoMurderSessions({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalizations.of(context)!;
     return Padding(
-      padding: EdgeInsetsGeometry.all(50),
+      padding: EdgeInsetsGeometry.all(20),
       child: Center(
         child: Column(
           spacing: 10,
@@ -18,22 +21,20 @@ class NoMurderSessions extends StatelessWidget {
               size: 64,
               semanticLabel: 'Heart broken',
             ),
-            Text(
-              "No murder session could be found. You can either join an existing session or create your own",
-            ),
+            Text(localization.noMurderText),
             Row(
               spacing: 10,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FilledButton.icon(
                   icon: Icon(Icons.create),
-                  label: Text("Create new murder"),
-                  onPressed: () => print("Clicked on create"),
+                  label: Text(localization.createNewMurderParty),
+                  onPressed: () => developer.log("Clicked on create"),
                 ),
                 FilledButton.icon(
                   icon: Icon(Icons.qr_code),
-                  label: Text("Join existing murder"),
-                  onPressed: () => print("Clicked on join"),
+                  label: Text(localization.joinMurder),
+                  onPressed: () => developer.log("Clicked on join"),
                 ),
               ],
             ),

@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:murder_party/l10n/app_localizations.dart';
@@ -51,13 +53,13 @@ class HomeScreen extends StatelessWidget {
         ),
         children: [
           FloatingActionButton.small(
-            onPressed: () => print("Used fad for create"),
+            onPressed: () => developer.log("Clicked on create from fab"),
             tooltip: appLocalizations.createNewMurderParty,
 
             child: Icon(Icons.add),
           ),
           FloatingActionButton.small(
-            onPressed: () => print("Used fad for join"),
+            onPressed: () => developer.log("Clicked on join from fab"),
             tooltip: appLocalizations.joinMurder,
             child: Icon(Icons.qr_code),
           ),
