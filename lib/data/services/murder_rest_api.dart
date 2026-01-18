@@ -9,16 +9,18 @@ part 'murder_rest_api.g.dart';
 class MurderRestApi {
   MurderRestApi();
 
+  static const int _port = 8000;
+
   late String murderId;
 
   Future<String> startApi(String murderId) async {
     this.murderId = murderId;
-    var networkInfo = NetworkInfo();
-    String localIp = (await networkInfo.getWifiIP()) ?? 'unknown';
-    var handler = const Pipeline()
+    final networkInfo = NetworkInfo();
+    final localIp = (await networkInfo.getWifiIP()) ?? 'unknown';
+    final handler = const Pipeline()
         .addMiddleware(logRequests())
-        .addHandler(handleRequest);
-    var server = await shelf_io.serve(handler, localIp, 8000);
+        .addHandler(ApiRouter().router.call);
+    final server = await shelf_io.serve(handler, localIp, _port);
     server.autoCompress = true;
     return 'http://${server.address.host}:${server.port}/';
   }
@@ -32,9 +34,9 @@ class MurderRestApi {
 }
 
 class ApiRouter {
-  static const _prefix = "/api";
+  static const String _prefix = '/api';
 
-  Route get router => _$ApiRouterRouter(this);
+  Router get router => _$ApiRouterRouter(this);
 
   @Route.mount('$_prefix/player')
   PlayerController get playerController => PlayerController();
@@ -46,8 +48,7 @@ class PlayerController implements RouterMixin {
     Request request,
     String id,
   ) async {
-    final playerResource = PlayerResource(name: "Player #$id");
-    return JsonResponse.ok(playerResource);
+    return JsonResponse.ok(PlayerResource(name: 'Player #$id'));
   }
 
   @override

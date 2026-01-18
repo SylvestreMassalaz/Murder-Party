@@ -3,9 +3,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class NotificationRepository {
   NotificationRepository()
     : notificationsPlugin = FlutterLocalNotificationsPlugin() {
-    var initializationConfig = InitializationSettings(
+    final initializationConfig = InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-      iOS: DarwinInitializationSettings(),
+      iOS: const DarwinInitializationSettings(),
     );
 
     notificationsPlugin.initialize(initializationConfig);

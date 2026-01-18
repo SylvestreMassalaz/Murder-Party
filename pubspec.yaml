@@ -44,6 +44,7 @@ dependencies:
   network_info_plus: ^7.0.0
   shelf_router: ^1.1.4
   shelf_routing: ^1.0.0
+  flutter_expandable_fab: ^2.5.2
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +58,7 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   shelf_routing_generator: ^2.0.1
   build_runner: ^2.10.5
+  mockito: ^5.6.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

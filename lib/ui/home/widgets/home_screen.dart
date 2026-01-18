@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:murder_party/ui/home/view_models/home_view_model.dart';
+import 'package:murder_party/ui/home/widgets/murder_session_list_item.dart';
+import 'package:murder_party/ui/home/widgets/no_murder_sessions.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key, required this.viewModel}) {
@@ -11,36 +14,85 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Murder Party"),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-      ),
-      body: ListenableBuilder(
-        listenable: viewModel,
-        builder: (context, _) {
-          return CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Card(
-                  child: Column(
-                    children: [
-                      ListTile(title: Text("Server url : ${viewModel.url}")),
-                    ],
-                  ),
+      body: SafeArea(
+        child: ListenableBuilder(
+          listenable: viewModel,
+          builder: (context, _) {
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  title: const Text("Murder Party"),
+                  backgroundColor: Theme.of(
+                    context,
+                  ).colorScheme.primaryContainer,
+                  pinned: true,
                 ),
-              ),
-              SliverList.builder(
-                itemCount: viewModel.localMurderParties.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(viewModel.localMurderParties[index].name),
-                  );
-                },
-              ),
-            ],
-          );
-        },
+                ..._buildSessionList(context),
+              ],
+            );
+          },
+        ),
+      ),
+      floatingActionButtonLocation: ExpandableFab.location,
+      floatingActionButton: ExpandableFab(
+        type: ExpandableFabType.up,
+        overlayStyle: ExpandableFabOverlayStyle(blur: 0.9),
+        openButtonBuilder: DefaultFloatingActionButtonBuilder(
+          child: Icon(Icons.add_rounded),
+          fabSize: ExpandableFabSize.regular,
+          shape: CircleBorder(),
+        ),
+        closeButtonBuilder: DefaultFloatingActionButtonBuilder(
+          child: Icon(Icons.close),
+          fabSize: ExpandableFabSize.small,
+          shape: CircleBorder(),
+        ),
+        children: [
+          FloatingActionButton.small(
+            onPressed: () => print("Used fad for create"),
+            tooltip: "Create new murder",
+
+            child: Icon(Icons.add),
+          ),
+          FloatingActionButton.small(
+            onPressed: () => print("Used fad for join"),
+            tooltip: "Join existing murder",
+            child: Icon(Icons.qr_code),
+          ),
+        ],
       ),
     );
+  }
+
+  List<Widget> _buildSessionList(BuildContext context) {
+    if (viewModel.murderPartySessions.isEmpty) {
+      return [SliverToBoxAdapter(child: NoMurderSessions())];
+    } else {
+      return [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsetsGeometry.only(
+              left: 20,
+              right: 10,
+              top: 10,
+              bottom: 10,
+            ),
+            child: Row(
+              children: [
+                Text("Recent sessions", textScaler: TextScaler.linear(1.5)),
+              ],
+            ),
+          ),
+        ),
+        SliverList.builder(
+          itemCount: viewModel.murderPartySessions.length,
+          itemBuilder: (context, index) {
+            return MurderSessionListItem(
+              murderPartySession: viewModel.murderPartySessions[index],
+            );
+          },
+        ),
+      ];
+    }
   }
 }
